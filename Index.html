@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Lovers+Quarrel&display=swap" rel="stylesheet">
+    
+    <style type="text/css" media="screen">
+        
+        #root {
+            font-family: 'Love Ya Like A Sister', cursive;
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: #c55ae0;
+            
+        }
+            
+        .valentine-container {
+            background-color: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
+        }
+        .flower{
+            height: 20%;
+            width: 20%;
+            border-radius: 60%;
+        }
+
+        .kiss {
+            height: 30%;
+            width: 30%;
+            border-radius: 60%;
+        }
+
+        .both-Button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            gap: 10px;
+          
+        }
+        .NoButton{
+            border: none;
+            padding: 5px;
+            border-radius: 7px;
+            font-size: 15px;
+            color: rgb(219, 214, 214);
+            background-color: rgb(95, 0, 150);
+        }
+        .NoButton:hover{
+            background-color: rgb(253, 5, 100);
+        }
+.yesButton{
+    border: none;
+    border-radius: 7px;
+    font-size: 50px;
+  }
+.yesButton:hover{
+    background-color: #e2e73a;
+}
+        .text {
+            font-family: 'Lovers Quarrel', cursive;
+            font-size: 60px;
+            color: yellow;
+            font-weight: 500;
+            margin: 10px;
+        }
+    
+    </style>
+    <title>Be my Valentine</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        const phrases = [
+            "No 🙉",
+            "Are you sure?",
+            "Really Sure😢",
+            "I'll be very sad😕",
+            "You're the sunshine of my life 💐",
+            "Your smile is my favorite 🥰",
+            "You make my heart skip a beat 💓",
+            "Pookie Please🥺",
+            "Don't do this to me🫤",
+            "I'm gonna cry..😭",
+            "You are breaking my heart😭💔",
+        ];
+
+        let noCount = 0;
+        let yesPressed = false;
+        let yesButtonSize = 16;
+
+        function handleYesClick() {
+            yesPressed = true;
+            render();
+        }
+
+        function handleNoClick() {
+            noCount += 1;
+            yesButtonSize += 20;
+            render();
+        }
+
+        function getNoButtonText() {
+            return phrases[Math.min(noCount, phrases.length - 1)];
+        }
+
+        function render() {
+            const root = document.getElementById('root');
+
+            if (yesPressed) {
+                root.innerHTML = `
+                    <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="bear-Kissing" />
+                    <div class='text'>Yayyy !!!</div>
+                `;
+            } else {
+                root.innerHTML = `
+                    <img class='kiss' src="https://media1.tenor.com/m/al4a1pG1f8YAAAAC/jump-bear.gif" alt="bear with heart" />
+                    <div class='text'>Will you be my valentine 🌹?</div>
+                    <div class='both-Button'>
+                        <button class='yesButton' style="font-size: ${yesButtonSize}px; background-color: rgb(248, 229, 89)" onclick="handleYesClick()">
+                            Yes 🙈
+                        </button>
+                        <button class='NoButton' onclick="handleNoClick()">
+                            ${getNoButtonText()}
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        render();
+    </script>
+
+</body>
+</html>
